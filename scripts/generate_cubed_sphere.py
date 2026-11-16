@@ -431,15 +431,21 @@ def generate_cubed_sphere(
             raise ValueError("crop must be non-negative")
 
         eval_min_lat = min_lat + crop
-        eval_max_lat = max_lat
+        eval_max_lat = max_lat - 1.0
         if eval_min_lat >= eval_max_lat:
             raise ValueError("crop is too large for the latitude range")
 
         if lon_span - 2.0 * crop <= 0.0:
             raise ValueError("crop is too large for the longitude range")
 
-        eval_min_lon = (min_lon + crop + 180.0) % 360.0 - 180.0
-        eval_max_lon = (min_lon + lon_span - crop + 180.0) % 360.0 - 180.0
+        lon_crop = 0.0
+        
+        # eval_min_lon = (min_lon + lon_crop + 180.0) % 360.0 - 180.0
+        # eval_max_lon = (min_lon + lon_span - lon_crop + 180.0) % 360.0 - 180.0
+
+        eval_min_lon = min_lon + lon_crop
+        eval_max_lon = min_lon + lon_span - lon_crop
+
         eval_lon_centre, eval_lon_span = _longitude_span(eval_min_lon, eval_max_lon)
 
         eval_xi_min, eval_xi_max, eval_eta_min, eval_eta_max = _cube_extent(

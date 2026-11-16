@@ -431,7 +431,7 @@ def generate_cubed_sphere(
             raise ValueError("crop must be non-negative")
 
         eval_min_lat = min_lat + crop
-        eval_max_lat = max_lat - crop
+        eval_max_lat = max_lat
         if eval_min_lat >= eval_max_lat:
             raise ValueError("crop is too large for the latitude range")
 

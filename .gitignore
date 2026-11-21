@@ -3,3 +3,6 @@ data/
 figures/
 **/__pycache__/
 .ipynb_checkpoints/
+
+# local script variant
+scripts/eq_current_vector_map_add_object.py
